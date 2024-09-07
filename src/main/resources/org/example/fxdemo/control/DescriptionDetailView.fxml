@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <VBox fx:id="firstPage" spacing="10">
+        <Label text="Edit Description"/>
+        <TextField fx:id="descriptionField"/>
+        <Button text="Back" onAction="#handleBack"/>
+        <Button text="Save" onAction="#handleSave" defaultButton="true"/>
+        <Button fx:id="btnDelete" text="Delete" onAction="#handleDelete"/>
+        <Button text="Cancel" onAction="#handleCancel" cancelButton="true"/>
+    </VBox>
+</AnchorPane>
