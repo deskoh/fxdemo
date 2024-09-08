@@ -1,6 +1,7 @@
 package org.example.fxdemo.control;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
@@ -9,6 +10,8 @@ import org.example.fxdemo.model.ItemAction;
 
 public class ActionTableCell extends TableCell<Item, ItemAction> {
     private FXMLLoader fxmlLoader;
+    private ActionTableCellController controller;
+    private Node node;
 
     public static Callback<TableColumn<Item, ItemAction>, TableCell<Item, ItemAction>> getCellFactory() {
         return param -> new ActionTableCell();
@@ -25,15 +28,20 @@ public class ActionTableCell extends TableCell<Item, ItemAction> {
         if (fxmlLoader == null) {
             try {
                 fxmlLoader = new FXMLLoader(getClass().getResource("ActionTableCell.fxml"));
-
-                var item = this.getTableRow().getItem();
-                var controller = new ActionTableCellController(item, item.getAction());
-                fxmlLoader.setController(controller);
-
-                setGraphic(fxmlLoader.load());
+                node = fxmlLoader.load();
+                // setGraphic(node);
+                controller = fxmlLoader.getController();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        if (getGraphic() == null) {
+            setGraphic(node);
+        }
+        // Following will run when row is created or neighbouring rows are deleted
+        var item = this.getTableRow().getItem();
+        controller.setItem(item);
+        controller.setAction(item.getAction());
+        controller.refresh();
     }
 }

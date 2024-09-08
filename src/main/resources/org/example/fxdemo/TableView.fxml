@@ -4,13 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
+<?import org.example.fxdemo.control.ActionTableCell?>
 <VBox alignment="CENTER" prefHeight="277.0" prefWidth="690.0" spacing="20.0" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fxdemo.TableViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
-    <Label fx:id="welcomeText"/>
+    
     <TableView fx:id="tableView" prefHeight="200.0" prefWidth="336.0">
         <columns>
             <TableColumn prefWidth="46.0" text="ID">
@@ -28,7 +28,10 @@
                     <PropertyValueFactory property="description"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="actionColumn" minWidth="0.0" prefWidth="129.0" text="Actions">
+            <TableColumn minWidth="0.0" prefWidth="129.0" text="Actions">
+                <cellFactory>
+                    <ActionTableCell fx:factory="getCellFactory"/>
+                </cellFactory>
                 <cellValueFactory>
                     <PropertyValueFactory property="action"/>
                 </cellValueFactory>
@@ -41,7 +44,7 @@
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button mnemonicParsing="false" text="Add" onAction="#handleAdd"/>
-            <Button mnemonicParsing="false" text="Remove"/>
+            <Button fx:id="btnDelete" mnemonicParsing="false" text="Remove" onAction="#handleRemove"/>
         </buttons>
     </ButtonBar>
 </VBox>

@@ -6,11 +6,12 @@ import org.example.fxdemo.model.Item;
 import org.example.fxdemo.model.ItemAction;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ItemService {
 
-    private static ObservableList<Item> items = FXCollections.observableList(new ArrayList<Item>(List.of(
+    private static final ObservableList<Item> items = FXCollections.observableList(new ArrayList<>(List.of(
             new Item(1, "Item 1", "Editable and deletable", new ItemAction(true, true)),
             new Item(2, "Item 2", "Editable only", new ItemAction(true, false)),
             new Item(3, "Item 3", "Deleteable only", new ItemAction(false, true)),
@@ -39,5 +40,12 @@ public class ItemService {
                 return; // Exit after removing the item
             }
         }
+    }
+
+    public static void createItem() {
+        int newIndex = items.stream().max(Comparator.comparingInt(Item::getId))
+                .map(item -> item.getId() + 1).orElse(1);
+        var newItem = new Item(newIndex, "New Item", "", new ItemAction(true, true));
+        items.add(newItem);
     }
 }

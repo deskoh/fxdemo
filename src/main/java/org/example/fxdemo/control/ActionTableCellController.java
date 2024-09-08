@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import lombok.Setter;
 import org.example.fxdemo.model.Item;
 import org.example.fxdemo.model.ItemAction;
 import org.example.fxdemo.service.ItemService;
@@ -17,16 +18,12 @@ public class ActionTableCellController {
     @FXML
     private Button btnDelete;
 
-    private final Item item;
-    private final ItemAction action;
+    @Setter
+    private Item item;
+    @Setter
+    private ItemAction action;
 
-    public ActionTableCellController(Item item, ItemAction action) {
-        this.item = item;
-        this.action = action;
-    }
-
-    @FXML
-    public void initialize() {
+    public void refresh() {
         btnEdit.setDisable(!this.action.isEditAllowed());
         btnDelete.setDisable(!this.action.isDeleteAllowed());
     }
@@ -37,14 +34,14 @@ public class ActionTableCellController {
         scene.setRoot(this.loadDetailView(scene, (Item) this.item.clone()));
     }
 
-    public void handleDelete(ActionEvent actionEvent) {
+    public void handleDelete() {
         ItemService.deleteItem(this.item.getId());
     }
 
     private <T> T loadDetailView(Scene scene, Item selectedItem) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MasterDetail.fxml"));
-            T parent = loader.<T>load();
+            T parent = loader.load();
 
             MasterDetailController detailController = loader.getController();
             detailController.setScene(scene);
