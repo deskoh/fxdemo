@@ -4,10 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.example.fxdemo.SceneUtil;
 import org.example.fxdemo.service.ItemService;
 
 public class DescriptionDetailViewController {
-    private MasterDetailController parentController;
+    private final MasterDetailController parentController;
 
     @FXML
     TextField descriptionField;
@@ -28,25 +29,21 @@ public class DescriptionDetailViewController {
         btnDelete.setDisable(!item.getAction().isDeleteAllowed());
     }
 
-    public void goToDescriptionPage(ActionEvent actionEvent) {
-        this.parentController.loadNameDetailView();
-    }
-
-    public void handleBack(ActionEvent actionEvent) {
+    public void handleBack() {
         this.parentController.loadNameDetailView();
     }
 
     public void handleSave(ActionEvent actionEvent) {
         ItemService.updateItem(this.parentController.getItem());
-        this.parentController.closeDetailView();
+        SceneUtil.closeDetailView(actionEvent);
     }
 
     public void handleCancel(ActionEvent actionEvent) {
-        this.parentController.closeDetailView();
+        SceneUtil.closeDetailView(actionEvent);
     }
 
     public void handleDelete(ActionEvent actionEvent) {
         ItemService.deleteItem(this.parentController.getItem().getId());
-        this.parentController.closeDetailView();
+        SceneUtil.closeDetailView(actionEvent);
     }
 }
