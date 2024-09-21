@@ -3,8 +3,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox>
+        <Label text="ID: "/>
+        <Label text="${controller.parentController.item.id}"/>
+    </HBox>
     <Label text="Edit Name"/>
     <TextField fx:id="nameField"/>
     <ButtonBar prefHeight="40.0" prefWidth="200.0">

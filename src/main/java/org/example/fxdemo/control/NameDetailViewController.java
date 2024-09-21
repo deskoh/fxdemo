@@ -3,8 +3,10 @@ package org.example.fxdemo.control;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import lombok.Getter;
 
 public class NameDetailViewController {
+    @Getter
     private MasterDetailController parentController;
 
     @FXML
