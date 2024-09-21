@@ -1,13 +1,13 @@
 package org.example.fxdemo.control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import lombok.Getter;
+import org.example.fxdemo.MainApplication;
 
 public class NameDetailViewController {
     @Getter
-    private MasterDetailController parentController;
+    private final MasterDetailController parentController;
 
     @FXML
     TextField nameField;
@@ -23,11 +23,11 @@ public class NameDetailViewController {
         nameField.textProperty().addListener((observable, oldValue, newValue) -> item.setName(newValue));
     }
 
-    public void goToDescriptionPage(ActionEvent actionEvent) {
+    public void goToDescriptionPage() {
         this.parentController.loadDescriptionDetailView();
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
-        this.parentController.closeDetailView();
+    public void handleCancel() {
+        MainApplication.closeDetailView();
     }
 }

@@ -1,10 +1,9 @@
 package org.example.fxdemo.control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import org.example.fxdemo.SceneUtil;
+import org.example.fxdemo.MainApplication;
 import org.example.fxdemo.service.ItemService;
 
 public class DescriptionDetailViewController {
@@ -33,17 +32,17 @@ public class DescriptionDetailViewController {
         this.parentController.loadNameDetailView();
     }
 
-    public void handleSave(ActionEvent actionEvent) {
+    public void handleSave() {
         ItemService.updateItem(this.parentController.getItem());
-        SceneUtil.closeDetailView(actionEvent);
+        MainApplication.closeDetailView();
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
-        SceneUtil.closeDetailView(actionEvent);
+    public void handleCancel() {
+        MainApplication.closeDetailView();
     }
 
-    public void handleDelete(ActionEvent actionEvent) {
+    public void handleDelete() {
         ItemService.deleteItem(this.parentController.getItem().getId());
-        SceneUtil.closeDetailView(actionEvent);
+        MainApplication.closeDetailView();
     }
 }

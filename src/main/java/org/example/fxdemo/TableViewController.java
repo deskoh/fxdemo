@@ -1,7 +1,6 @@
 package org.example.fxdemo;
 
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -34,8 +33,8 @@ public class TableViewController {
         );
     }
 
-    public void handleAdd(ActionEvent action) {
-        SceneUtil.loadDetailView(action, ItemService.createItem());
+    public void handleAdd() {
+        MainApplication.loadDetailView(ItemService.createItem());
     }
 
     public void handleRemove() {

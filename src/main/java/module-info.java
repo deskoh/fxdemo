@@ -7,8 +7,8 @@ module org.example.fxdemo {
     requires static lombok;
 
     opens org.example.fxdemo to javafx.fxml;
+    opens org.example.fxdemo.control to javafx.fxml;
     opens org.example.fxdemo.model;
     exports org.example.fxdemo;
     exports org.example.fxdemo.control;
-    opens org.example.fxdemo.control to javafx.fxml;
 }

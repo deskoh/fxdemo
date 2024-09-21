@@ -2,53 +2,43 @@ package org.example.fxdemo.control;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.util.Callback;
 import lombok.Getter;
-import lombok.Setter;
 import org.example.fxdemo.model.Item;
 
 /**
  * Master Detail Controller that swaps child detail views.
  */
 public class MasterDetailController {
-    private Scene scene;
-
     @Getter
-    @Setter
-    private Item item;
+    private final Item item;
 
     @FXML
     private Pane rootPane;
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
+    public MasterDetailController(Item item) {
+        this.item = item;
+    }
+
+    @FXML
+    private void initialize() {
+        this.loadNameDetailView();
     }
 
     public void loadNameDetailView() {
-        var controller = new NameDetailViewController(this);
-        this.loadView("NameDetailView.fxml", controller);
+        this.loadView("NameDetailView.fxml", param -> new NameDetailViewController(this));
     }
 
     public void loadDescriptionDetailView() {
-        var controller = new DescriptionDetailViewController(this);
-        this.loadView("DescriptionDetailView.fxml", controller);
+        this.loadView("DescriptionDetailView.fxml", param -> new DescriptionDetailViewController(this));
     }
 
-    public void closeDetailView() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/fxdemo/TableView.fxml"));
-            this.scene.setRoot(fxmlLoader.load());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadView(String fxmlFile, Object controller) {
+    private void loadView(String fxmlFile, Callback<Class<?>, Object> controllerFactory) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
             fxmlLoader.setRoot(rootPane);
-            fxmlLoader.setController(controller);
+            fxmlLoader.setControllerFactory(controllerFactory);
 
             rootPane.getChildren().clear();
             fxmlLoader.load();

@@ -1,48 +1,24 @@
 package org.example.fxdemo;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import org.example.fxdemo.control.MasterDetailController;
 import org.example.fxdemo.model.Item;
 
-import java.util.EventObject;
-
 public class SceneUtil {
-    public static void loadDetailView(EventObject event, Item item) {
-        var scene = getScene(event);
-        Parent parent = loadDetailView(scene, item);
-        scene.setRoot(parent);
-    }
-
-    public static void closeDetailView(EventObject event) {
+    public static <T> T loadMasterDetailView(Item selectedItem) {
         try {
-            var scene = getScene(event);
-            FXMLLoader fxmlLoader = new FXMLLoader(SceneUtil.class.getResource("TableView.fxml"));
-            scene.setRoot(fxmlLoader.load());
+            FXMLLoader loader = new FXMLLoader(SceneUtil.class.getResource("control/MasterDetail.fxml"));
+            loader.setControllerFactory(param -> new MasterDetailController(selectedItem));
+            return loader.load();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return null;
     }
 
-    private static Scene getScene(EventObject event) {
-        var node = (Node) event.getSource();
-        return node.getScene();
-    }
-
-    private static <T> T loadDetailView(Scene scene, Item selectedItem) {
+    public static <T> T loadTableView() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneUtil.class.getResource("control/MasterDetail.fxml"));
-            T parent = loader.load();
-
-            MasterDetailController detailController = loader.getController();
-            detailController.setScene(scene);
-            detailController.setItem(selectedItem);
-            detailController.loadNameDetailView();
-
-            return parent;
+            return FXMLLoader.load(SceneUtil.class.getResource("TableView.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
