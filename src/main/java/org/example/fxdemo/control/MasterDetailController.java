@@ -47,10 +47,11 @@ public class MasterDetailController {
     private void loadView(String fxmlFile, Object controller) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+            fxmlLoader.setRoot(rootPane);
             fxmlLoader.setController(controller);
 
-            this.rootPane.getChildren().clear();
-            this.rootPane.getChildren().add(fxmlLoader.load());
+            rootPane.getChildren().clear();
+            fxmlLoader.load();
         } catch (Exception e) {
             e.printStackTrace();
         }

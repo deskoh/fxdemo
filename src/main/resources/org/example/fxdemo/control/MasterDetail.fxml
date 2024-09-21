@@ -4,5 +4,6 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.fxdemo.control.MasterDetailController"
-      fx:id="rootPane">
+      fx:id="rootPane"
+      spacing="10">
 </VBox>
