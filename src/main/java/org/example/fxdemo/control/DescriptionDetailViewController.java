@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.example.fxdemo.MainApplication;
+import org.example.fxdemo.NavigationViewController;
+import org.example.fxdemo.model.Item;
 import org.example.fxdemo.service.ItemService;
 
-public class DescriptionDetailViewController {
-    private final MasterDetailController parentController;
+public class DescriptionDetailViewController extends NavigationViewController {
+    private final Item item;
 
     @FXML
     TextField descriptionField;
@@ -15,13 +17,12 @@ public class DescriptionDetailViewController {
     @FXML
     Button btnDelete;
 
-    public DescriptionDetailViewController(MasterDetailController masterDetailController) {
-        this.parentController = masterDetailController;
+    public DescriptionDetailViewController(Item item) {
+        this.item = item;
     }
 
     @FXML
     public void initialize() {
-        var item = this.parentController.getItem();
         descriptionField.setText(item.getDescription());
         descriptionField.textProperty().addListener((observable, oldValue, newValue) -> item.setDescription(newValue));
 
@@ -29,20 +30,20 @@ public class DescriptionDetailViewController {
     }
 
     public void handleBack() {
-        this.parentController.loadNameDetailView();
+        this.navigationController.popView();
     }
 
     public void handleSave() {
-        ItemService.updateItem(this.parentController.getItem());
-        MainApplication.closeDetailView();
+        ItemService.updateItem(this.item);
+        MainApplication.closeItemForm();
     }
 
     public void handleCancel() {
-        MainApplication.closeDetailView();
+        MainApplication.closeItemForm();
     }
 
     public void handleDelete() {
-        ItemService.deleteItem(this.parentController.getItem().getId());
-        MainApplication.closeDetailView();
+        ItemService.deleteItem(this.item.getId());
+        MainApplication.closeItemForm();
     }
 }

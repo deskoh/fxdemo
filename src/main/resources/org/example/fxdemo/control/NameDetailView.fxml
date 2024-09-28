@@ -5,14 +5,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<fx:root
-        type="javafx.scene.layout.VBox"
+<VBox
         xmlns="http://javafx.com/javafx/21"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="org.example.fxdemo.control.NameDetailViewController">
+        fx:controller="org.example.fxdemo.control.NameDetailViewController"
+        spacing="10">
     <HBox>
         <Label text="ID: "/>
-        <Label text="${controller.parentController.item.id}"/>
+        <Label text="${controller.item.id}"/>
     </HBox>
     <Label text="Edit Name"/>
     <TextField fx:id="nameField"/>
@@ -25,4 +25,4 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-</fx:root>
+</VBox>

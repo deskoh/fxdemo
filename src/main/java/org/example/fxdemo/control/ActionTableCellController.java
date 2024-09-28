@@ -26,7 +26,7 @@ public class ActionTableCellController {
     }
 
     public void handleEdit() throws CloneNotSupportedException {
-        MainApplication.loadDetailView((Item) this.item.clone());
+        MainApplication.loadItemForm((Item) this.item.clone());
     }
 
     public void handleDelete() {

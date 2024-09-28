@@ -34,7 +34,7 @@ public class TableViewController {
     }
 
     public void handleAdd() {
-        MainApplication.loadDetailView(ItemService.createItem());
+        MainApplication.loadItemForm(ItemService.createItem());
     }
 
     public void handleRemove() {

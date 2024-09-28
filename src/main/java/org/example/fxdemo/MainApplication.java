@@ -25,12 +25,12 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public static void loadDetailView(Item item) {
-        Parent parent = SceneUtil.loadMasterDetailView(item);
+    public static void loadItemForm(Item item) {
+        Parent parent = SceneUtil.loadItemForm(item);
         scene.setRoot(parent);
     }
 
-    public static void closeDetailView() {
+    public static void closeItemForm() {
         Parent parent = SceneUtil.loadTableView();
         scene.setRoot(parent);
     }

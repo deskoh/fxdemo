@@ -1,14 +1,14 @@
 package org.example.fxdemo;
 
 import javafx.fxml.FXMLLoader;
-import org.example.fxdemo.control.MasterDetailController;
+import org.example.fxdemo.control.ItemFormController;
 import org.example.fxdemo.model.Item;
 
 public class SceneUtil {
-    public static <T> T loadMasterDetailView(Item selectedItem) {
+    public static <T> T loadItemForm(Item selectedItem) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneUtil.class.getResource("control/MasterDetail.fxml"));
-            loader.setControllerFactory(param -> new MasterDetailController(selectedItem));
+            FXMLLoader loader = new FXMLLoader(SceneUtil.class.getResource("control/ItemForm.fxml"));
+            loader.setControllerFactory(param -> new ItemFormController(selectedItem));
             return loader.load();
         } catch (Exception e) {
             e.printStackTrace();
