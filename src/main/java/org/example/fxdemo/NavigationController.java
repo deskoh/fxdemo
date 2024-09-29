@@ -13,7 +13,8 @@ public class NavigationController {
     @AllArgsConstructor
     public enum View {
         NAME("control/NameDetailView.fxml"),
-        DESCRIPTION("control/DescriptionDetailView.fxml");
+        DESCRIPTION("control/DescriptionDetailView.fxml"),
+        COMBOBOX("control/ComboBoxDemo.fxml");
 
         @Getter
         private final String fxmlFile;

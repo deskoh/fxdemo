@@ -3,11 +3,15 @@ package org.example.fxdemo.control;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import org.example.fxdemo.MainApplication;
+import org.example.fxdemo.NavigationController;
 import org.example.fxdemo.NavigationViewController;
+import org.example.fxdemo.Util;
 import org.example.fxdemo.model.Item;
 import org.example.fxdemo.service.ItemService;
 
+@RequiredArgsConstructor
 public class DescriptionDetailViewController extends NavigationViewController {
     private final Item item;
 
@@ -17,20 +21,18 @@ public class DescriptionDetailViewController extends NavigationViewController {
     @FXML
     Button btnDelete;
 
-    public DescriptionDetailViewController(Item item) {
-        this.item = item;
-    }
-
     @FXML
     public void initialize() {
-        descriptionField.setText(item.getDescription());
-        descriptionField.textProperty().addListener((observable, oldValue, newValue) -> item.setDescription(newValue));
-
+        Util.bindPropertyToSetter(descriptionField.textProperty(), item::setDescription, item.getDescription());
         btnDelete.setDisable(!item.getAction().isDeleteAllowed());
     }
 
     public void handleBack() {
         this.navigationController.popView();
+    }
+
+    public void handleNext() {
+        this.navigationController.pushView(NavigationController.View.COMBOBOX, param -> new ComboBoxDemoController(item));
     }
 
     public void handleSave() {
