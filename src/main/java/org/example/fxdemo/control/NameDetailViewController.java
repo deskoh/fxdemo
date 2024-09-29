@@ -24,7 +24,7 @@ public class NameDetailViewController extends NavigationViewController {
     }
 
     public void goToDescriptionPage() {
-        this.navigationController.pushView(NavigationController.View.DESCRIPTION, param -> new DescriptionDetailViewController(this.item));
+        this.navigationController.pushView(NavigationController.View.DESCRIPTION, this.item);
     }
 
     public void handleCancel() {

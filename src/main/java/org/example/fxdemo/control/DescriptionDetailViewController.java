@@ -32,7 +32,7 @@ public class DescriptionDetailViewController extends NavigationViewController {
     }
 
     public void handleNext() {
-        this.navigationController.pushView(NavigationController.View.COMBOBOX, param -> new ComboBoxDemoController(item));
+        this.navigationController.pushView(NavigationController.View.COMBOBOX, item);
     }
 
     public void handleSave() {

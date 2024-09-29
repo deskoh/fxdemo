@@ -21,7 +21,6 @@ public class ItemFormController {
 
     @FXML
     private void initialize() {
-        navigationController = new NavigationController(rootPane);
-        this.navigationController.pushView(NavigationController.View.NAME, param -> new NameDetailViewController(this.item));
+        navigationController = new NavigationController(rootPane, NavigationController.View.NAME, this.item);
     }
 }
