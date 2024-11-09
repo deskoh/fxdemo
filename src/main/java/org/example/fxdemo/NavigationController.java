@@ -15,7 +15,9 @@ public class NavigationController {
     public enum View {
         NAME("control/NameDetailView.fxml"),
         DESCRIPTION("control/DescriptionDetailView.fxml"),
-        COMBOBOX("control/ComboBoxDemo.fxml");
+        COMBOBOX("ComboBoxDemo.fxml"),
+        DEMO("Demo.fxml"),
+        DEMO_FORM("DemoForm.fxml");
 
         @Getter
         private final String fxmlFile;
@@ -31,6 +33,11 @@ public class NavigationController {
      */
     public NavigationController(Pane rootPane) {
         this.rootPane = rootPane;
+    }
+
+    public NavigationController(Pane rootPane, View view) {
+        this.rootPane = rootPane;
+        this.pushView(view);
     }
 
     /**
@@ -50,15 +57,24 @@ public class NavigationController {
      * Push a new view with specified controller factory.
      */
     public void pushView(View view, Callback<Class<?>, NavigationViewController> controllerFactory) {
-        var node = this.loadView(view.getFxmlFile(), controllerFactory::call);
+        var node = controllerFactory == null
+                ? this.loadView(view.getFxmlFile(), null)
+                : this.loadView(view.getFxmlFile(), controllerFactory::call);
         rootPane.getChildren().setAll(this.viewStack.push(node));
+    }
+
+    /**
+     * Push a view with no-args controller.
+     */
+    public void pushView(View view) {
+        this.pushView(view, null);
     }
 
     /**
      * Push a view with controller construction using specified model.
      */
     public <T> void pushView(View view, T model) {
-        this.pushView(view, getControllerFactory(model)::call);
+        this.pushView(view, getControllerFactory(model));
     }
 
     public void popView() {
@@ -71,7 +87,9 @@ public class NavigationController {
     protected Node loadView(String fxmlFile, Callback<Class<?>, Object> controllerFactory) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
-            fxmlLoader.setControllerFactory(controllerFactory);
+            if (controllerFactory != null) {
+                fxmlLoader.setControllerFactory(controllerFactory);
+            }
 
             Node node = fxmlLoader.load();
             NavigationViewController controller = fxmlLoader.getController();
@@ -89,7 +107,7 @@ public class NavigationController {
             try {
                 for (Constructor<?> constructor : type.getConstructors()) {
                     if (constructor.getParameterCount() == 1
-                            && constructor.getParameterTypes()[0].equals(model.getClass())
+                            && (model == null || constructor.getParameterTypes()[0].isAssignableFrom(model.getClass()))
                     ) {
                         return (T) constructor.newInstance(model);
                     }

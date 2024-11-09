@@ -1,4 +1,4 @@
-package org.example.fxdemo.control;
+package org.example.fxdemo;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
@@ -9,9 +9,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
-import org.example.fxdemo.MainApplication;
-import org.example.fxdemo.NavigationViewController;
-import org.example.fxdemo.Util;
 import org.example.fxdemo.model.Item;
 import org.example.fxdemo.service.ItemService;
 

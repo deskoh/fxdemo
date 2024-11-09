@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import org.example.fxdemo.control.ItemListControl?>
+<fx:root
+        type="HBox" xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.example.fxdemo.control.ItemListSection">
+    <ItemListControl fx:id="items"/>
+    <Button text="Add" onAction="#onAdd"/>
+</fx:root>

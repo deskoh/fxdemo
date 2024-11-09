@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.fxdemo.DemoController"
+>
+    <VBox>
+        <Button onAction="#handleDemo" text="No Binding"/>
+        <Button onAction="#handleDemo1" text="Binding 1"/>
+        <Button onAction="#handleDemo2" text="Binding 2"/>
+        <Button onAction="#handleDemo3" text="Binding 3"/>
+    </VBox>
+</AnchorPane>

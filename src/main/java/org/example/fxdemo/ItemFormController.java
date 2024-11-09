@@ -1,9 +1,8 @@
-package org.example.fxdemo.control;
+package org.example.fxdemo;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
-import org.example.fxdemo.NavigationController;
 import org.example.fxdemo.model.Item;
 
 public class ItemFormController {

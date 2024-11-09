@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.lang.Integer?>
 <GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="org.example.fxdemo.control.ComboBoxDemoController">
+          fx:controller="org.example.fxdemo.ComboBoxDemoController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0"/>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0"/>

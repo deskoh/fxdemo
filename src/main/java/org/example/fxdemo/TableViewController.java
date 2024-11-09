@@ -4,7 +4,9 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import org.example.fxdemo.model.Item;
+import org.example.fxdemo.model.ItemAction;
 import org.example.fxdemo.service.ItemService;
 
 public class TableViewController {
@@ -13,6 +15,12 @@ public class TableViewController {
 
     @FXML
     private Button btnDelete;
+
+    @FXML
+    private Pane demoCombobox;
+
+    @FXML
+    private Pane demoRoot;
 
     @FXML
     private void initialize() {
@@ -31,6 +39,12 @@ public class TableViewController {
                         tableView.getSelectionModel().selectedItemProperty()
                 )
         );
+
+        new NavigationController(
+                demoCombobox, NavigationController.View.COMBOBOX,
+                new Item(1, "test", "desc", new ItemAction(true, true))
+        );
+        new NavigationController(demoRoot, NavigationController.View.DEMO);
     }
 
     public void handleAdd() {

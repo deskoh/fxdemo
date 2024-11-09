@@ -3,48 +3,65 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.example.fxdemo.control.ActionTableCell?>
-<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fxdemo.TableViewController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <TableView fx:id="tableView" prefHeight="200.0" prefWidth="336.0" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn prefWidth="46.0" text="ID">
-                <cellValueFactory>
-                    <PropertyValueFactory property="id"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="122.0" text="Name">
-                <cellValueFactory>
-                    <PropertyValueFactory property="name"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="341.0" text="Description">
-                <cellValueFactory>
-                    <PropertyValueFactory property="description"/>
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="129.0" text="Actions">
-                <cellFactory>
-                    <ActionTableCell fx:factory="getCellFactory"/>
-                </cellFactory>
-                <cellValueFactory>
-                    <PropertyValueFactory property="action"/>
-                </cellValueFactory>
-            </TableColumn>
-        </columns>
-        <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-        </columnResizePolicy>
-    </TableView>
-    <ButtonBar prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-            <Button onAction="#handleAdd" text="_Add"/>
-            <Button fx:id="btnDelete" onAction="#handleRemove" text="_Remove"/>
-        </buttons>
-    </ButtonBar>
-</VBox>
+<TabPane tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/21"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="org.example.fxdemo.TableViewController"
+>
+    <tabs>
+        <Tab text="Table">
+            <VBox alignment="TOP_CENTER" spacing="20.0">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </padding>
+                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="336.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn prefWidth="46.0" text="ID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="id"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="122.0" text="Name">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="name"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="341.0" text="Description">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="description"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="0.0" prefWidth="129.0" text="Actions">
+                            <cellFactory>
+                                <ActionTableCell fx:factory="getCellFactory"/>
+                            </cellFactory>
+                            <cellValueFactory>
+                                <PropertyValueFactory property="action"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+                <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <Button onAction="#handleAdd" text="_Add"/>
+                        <Button fx:id="btnDelete" onAction="#handleRemove" text="_Remove"/>
+                    </buttons>
+                </ButtonBar>
+            </VBox>
+        </Tab>
+        <Tab text="Combobox">
+            <Pane fx:id="demoCombobox"/>
+        </Tab>
+        <Tab text="Demo">
+            <Pane fx:id="demoRoot">
+                <fx:include source="Demo.fxml"/>
+            </Pane>
+        </Tab>
+    </tabs>
+</TabPane>

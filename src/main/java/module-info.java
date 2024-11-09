@@ -11,4 +11,6 @@ module org.example.fxdemo {
     opens org.example.fxdemo.model;
     exports org.example.fxdemo;
     exports org.example.fxdemo.control;
+    exports org.example.fxdemo.event;
+    exports org.example.fxdemo.model;
 }
